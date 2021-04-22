@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+
+  postgres:
+    restart: always
+    image: postgres:latest
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=callback
+    volumes:
+      - ./store/pg/data:/var/lib/postgresql/data
+
+  tester:
+    depends_on:
+      - postgres
+    build:
+      context: ./
+      dockerfile: Dockerfile.tester
+    container_name: tester
+    ports:
+      - "9010:9010"
+    environment:
+      HTTP_ADDR: ":9010"
+      ENV: "local"
+    command: ["./wait-for-it.sh", "postgres:5432", "--timeout=60", "--", "./tester"]
+
+  callback:
+    depends_on:
+      - postgres
+    build:
+      context: ./
+      dockerfile: Dockerfile.callback
+    container_name: callback
+    ports:
+     - "9090:9090"
+    environment:
+      HTTP_ADDR: ":9090"
+      ENV: "local"
+    command: ["./wait-for-it.sh", "postgres:5432", "--timeout=60", "--", "./callback"]

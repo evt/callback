@@ -26,7 +26,7 @@ func main() {
 				ids[i] = strconv.Itoa(rng.Int() % 100)
 			}
 			body := bytes.NewBuffer([]byte(fmt.Sprintf(`{"object_ids":[%s]}`, strings.Join(ids, ","))))
-			resp, err := client.Post("http://localhost:9090/callback", "application/json", body)
+			resp, err := client.Post("http://callback:9090/callback", "application/json", body)
 			if err != nil {
 				fmt.Println(err)
 				continue
