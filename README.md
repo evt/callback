@@ -16,7 +16,7 @@
 
 # Callback service
 
-Write a rest-service that listens on localhost:9090 for POST requests on /callback.
+Write a rest-service that listens on `localhost:9090` for POST requests on /callback.
 
 Run the go service attached to this task. It will send requests to your service at a fixed interval of 5 seconds.
 
@@ -29,7 +29,7 @@ The request body will look like this:
 The amount of IDs varies with each request. Expect up to 200 IDs.
 
 Every ID is linked to an object whose details can be fetched from the provided
-service. Our service listens on localhost:9010/objects/:id and returns the
+service. Our service listens on `localhost:9010/objects/:id` and returns the
 following response:
 ```
 {
@@ -44,7 +44,7 @@ Store all objects in a PostgreSQL database along with a timestamp when the objec
 
 Let your service delete objects in the database when they have not been received for more than 30 seconds.
 
-Important: due to business constraints, we are not allowed to miss any callback to our service.
+**Important**: due to business constraints, we are not allowed to miss any callback to our service.
 
 Write code so that all errors are properly recovered and that the endpoint is always available.
 
