@@ -6,7 +6,7 @@
 *.dylib
 
 .idea
-store
+internal/pg/data
 
 # Test binary, built with `go test -c`
 *.test

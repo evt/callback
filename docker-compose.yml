@@ -12,7 +12,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=callback
     volumes:
-      - ./store/pg/data:/var/lib/postgresql/data
+      - ./internal/pg/data:/var/lib/postgresql/data
 
   tester:
     depends_on:
@@ -39,5 +39,7 @@ services:
      - "9090:9090"
     environment:
       HTTP_ADDR: ":9090"
-      ENV: "local"
+      PG_URL: "postgres://postgres:postgres@postgres/callback?sslmode=disable"
+      PG_MIGRATIONS_PATH: "file://../../internal/pg/migrations"
+
     command: ["./wait-for-it.sh", "postgres:5432", "--timeout=60", "--", "./callback"]

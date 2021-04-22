@@ -11,7 +11,9 @@ import (
 
 // Config is a config :).
 type Config struct {
-	HTTPAddr string `envconfig:"HTTP_ADDR"`
+	HTTPAddr         string `envconfig:"HTTP_ADDR"`
+	PgURL            string `envconfig:"PG_URL"`
+	PgMigrationsPath string `envconfig:"PG_MIGRATIONS_PATH"`
 }
 
 var (
@@ -28,7 +30,6 @@ func Get() *Config {
 		}
 
 		configBytes, err := json.MarshalIndent(config, "", "  ")
-
 		if err != nil {
 			log.Fatal(err)
 		}
