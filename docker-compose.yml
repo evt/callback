@@ -14,20 +14,6 @@ services:
     volumes:
       - ./internal/pg/data:/var/lib/postgresql/data
 
-  tester:
-    depends_on:
-      - postgres
-    build:
-      context: ./
-      dockerfile: Dockerfile.tester
-    container_name: tester
-    ports:
-      - "9010:9010"
-    environment:
-      HTTP_ADDR: ":9010"
-      ENV: "local"
-    command: ["./wait-for-it.sh", "postgres:5432", "--timeout=60", "--", "./tester"]
-
   callback:
     depends_on:
       - postgres
@@ -43,3 +29,19 @@ services:
       PG_MIGRATIONS_PATH: "file://../../internal/pg/migrations"
 
     command: ["./wait-for-it.sh", "postgres:5432", "--timeout=60", "--", "./callback"]
+
+
+  tester:
+    depends_on:
+      - postgres
+      - callback
+    build:
+      context: ./
+      dockerfile: Dockerfile.tester
+    container_name: tester
+    ports:
+      - "9010:9010"
+    environment:
+      HTTP_ADDR: ":9010"
+      ENV: "local"
+    command: ["./wait-for-it.sh", "postgres:5432", "--timeout=60", "--", "./tester"]

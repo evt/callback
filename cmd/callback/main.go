@@ -8,7 +8,11 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
+	"time"
+
+	"github.com/evt/callback/internal/services/testerservice"
 
 	"github.com/evt/callback/internal/model"
 	"github.com/evt/callback/internal/pg"
@@ -52,6 +56,9 @@ func run() error {
 	// callback service
 	callbackService := callbackservice.New(objectRepo)
 
+	// tester service (to get object)
+	testerService := testerservice.New(time.Second * 3)
+
 	http.HandleFunc("/callback", func(w http.ResponseWriter, r *http.Request) {
 		defer r.Body.Close()
 
@@ -62,6 +69,37 @@ func run() error {
 
 		if len(request.ObjectIDs) == 0 {
 			http.Error(w, "no object IDs provided", http.StatusBadRequest)
+		}
+
+		var wg sync.WaitGroup
+		receivedObjects := make(chan model.TesterObject, len(request.ObjectIDs))
+
+		for i := range request.ObjectIDs {
+			wg.Add(1)
+
+			go func(objectID uint) {
+				defer wg.Done()
+
+				object, err := testerService.GetObject()
+				if err != nil {
+					log.Printf("[%d of %d] testerService.GetObject failed: %s\n", objectID, len(request.ObjectIDs), err)
+					return
+				}
+
+				log.Printf("[%d of %d] testerService.GetObject passed\n", objectID, len(request.ObjectIDs))
+
+				receivedObjects <- *object
+
+			}(request.ObjectIDs[i])
+		}
+
+		go func() {
+			wg.Wait()
+			close(receivedObjects)
+		}()
+
+		for _ = range receivedObjects {
+
 		}
 
 		for i := range request.ObjectIDs {

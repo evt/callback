@@ -17,10 +17,9 @@ func main() {
 	rng := rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	go func() {
-		client := &http.Client{Timeout: 1 * time.Second}
+		client := &http.Client{Timeout: 60 * time.Second}
 
 		for {
-			time.Sleep(5 * time.Second)
 
 			ids := make([]string, rng.Int31n(200))
 			for i := range ids {
@@ -33,6 +32,8 @@ func main() {
 				continue
 			}
 			_ = resp.Body.Close()
+
+			time.Sleep(600 * time.Second)
 		}
 	}()
 
