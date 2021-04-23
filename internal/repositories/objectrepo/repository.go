@@ -20,12 +20,13 @@ func New(db *pg.DB) *ObjectRepository {
 	}
 }
 
-// CreateObject creates new object in Dynamo DB.
-func (repo *ObjectRepository) CreateObject(ctx context.Context, object *model.Object) error {
+// UpdateObject creates new object in Dynamo DB.
+func (repo *ObjectRepository) UpdateObject(ctx context.Context, object *model.Object) error {
 	_, err := repo.db.
 		WithContext(ctx).
 		Model(object).
-		OnConflict("DO NOTHING").
+		OnConflict("(id) DO UPDATE").
+		Set("last_seen = now()").
 		Insert()
 	if err != nil {
 		return err

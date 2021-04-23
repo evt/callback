@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/evt/callback/internal/error"
+	"github.com/evt/callback/internal/e"
 
 	"github.com/evt/callback/internal/model"
 )
@@ -21,21 +21,21 @@ func New(repo ObjectRepository) *CallbackService {
 	}
 }
 
-// CreateObject creates new object
-func (svc *CallbackService) CreateObject(ctx context.Context, object *model.Object) error.Error {
+// UpdateObject creates new object
+func (svc *CallbackService) UpdateObject(ctx context.Context, object *model.Object) e.Error {
 	if object == nil {
-		return error.NewInternal("no object provided")
+		return e.NewInternal("no object provided")
 	}
 
 	if object.ID == 0 {
-		return error.NewBadRequest("no object ID provided")
+		return e.NewBadRequest("no object ID provided")
 	}
 
 	object.LastSeen = time.Now().UTC()
 
-	err := svc.objectRepo.CreateObject(ctx, object)
+	err := svc.objectRepo.UpdateObject(ctx, object)
 	if err != nil {
-		return error.NewInternalf("failed creating object in repo: %s", err)
+		return e.NewInternalf("failed creating object in repo: %s", err)
 	}
 
 	return nil

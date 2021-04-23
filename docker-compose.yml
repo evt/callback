@@ -43,5 +43,4 @@ services:
       - "9010:9010"
     environment:
       HTTP_ADDR: ":9010"
-      ENV: "local"
-    command: ["./wait-for-it.sh", "postgres:5432", "--timeout=60", "--", "./tester"]
+    command: ["./wait-for-it.sh", "callback:9090", "--timeout=60", "--", "./tester"]

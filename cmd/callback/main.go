@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -33,6 +34,9 @@ func main() {
 }
 
 func run() error {
+	// default context
+	defaultCtx := context.Background()
+
 	// config
 	cfg := config.Get()
 
@@ -56,12 +60,10 @@ func run() error {
 	// callback service
 	callbackService := callbackservice.New(objectRepo)
 
-	// tester service (to get object)
-	testerService := testerservice.New(time.Second * 3)
+	// tester service to get object details (allow waiting for 30 seconds max till all requests completed)
+	testerService := testerservice.New(time.Second * 60)
 
 	http.HandleFunc("/callback", func(w http.ResponseWriter, r *http.Request) {
-		defer r.Body.Close()
-
 		var request model.CallbackRequest
 		if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 			http.Error(w, fmt.Sprintf("invalid request: %s", err), http.StatusBadRequest)
@@ -71,26 +73,32 @@ func run() error {
 			http.Error(w, "no object IDs provided", http.StatusBadRequest)
 		}
 
+		// this is a group of requests back to tester service for object details
 		var wg sync.WaitGroup
 		receivedObjects := make(chan model.TesterObject, len(request.ObjectIDs))
 
 		for i := range request.ObjectIDs {
 			wg.Add(1)
 
-			go func(objectID uint) {
+			objectID := request.ObjectIDs[i]
+
+			log.Printf("=> Next object ID: %d\n", objectID)
+
+			go func() {
 				defer wg.Done()
 
-				object, err := testerService.GetObject()
+				object, err := testerService.GetObject(objectID)
 				if err != nil {
-					log.Printf("[%d of %d] testerService.GetObject failed: %s\n", objectID, len(request.ObjectIDs), err)
+					log.Printf("[id: %d, total: %d] testerService.GetObject failed: %s\n", object.ID, len(request.ObjectIDs), err)
+
 					return
 				}
 
-				log.Printf("[%d of %d] testerService.GetObject passed\n", objectID, len(request.ObjectIDs))
+				log.Printf("[id: %d, total: %d] testerService.GetObject passed (online=%t)\n", object.ID, len(request.ObjectIDs), object.Online)
 
-				receivedObjects <- *object
+				receivedObjects <- object
 
-			}(request.ObjectIDs[i])
+			}()
 		}
 
 		go func() {
@@ -98,15 +106,23 @@ func run() error {
 			close(receivedObjects)
 		}()
 
-		for _ = range receivedObjects {
+		var totalUpdated, totalReceived int
 
-		}
+		for object := range receivedObjects {
+			totalReceived++
 
-		for i := range request.ObjectIDs {
-			callbackService.CreateObject(r.Context(), &model.Object{
-				ID: request.ObjectIDs[i],
+			if !object.Online {
+				continue
+			}
+
+			callbackService.UpdateObject(defaultCtx, &model.Object{
+				ID: object.ID,
 			})
+
+			totalUpdated++
 		}
+
+		log.Printf("totals: received=%d, updated = %d\n", totalReceived, totalUpdated)
 
 		w.Write([]byte("ok"))
 	})

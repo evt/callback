@@ -40,7 +40,7 @@ func main() {
 	http.HandleFunc("/objects/", func(w http.ResponseWriter, r *http.Request) {
 		time.Sleep(time.Duration(rng.Int63n(4000)+300) * time.Millisecond)
 
-		idRaw := strings.TrimPrefix(r.URL.Path, "/object/")
+		idRaw := strings.TrimPrefix(r.URL.Path, "/objects/")
 		id, err := strconv.Atoi(idRaw)
 		if err != nil {
 			http.Error(w, "invalid id", http.StatusBadRequest)
