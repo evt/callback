@@ -8,6 +8,6 @@ import (
 
 // ObjectRepository is an object repository
 type ObjectRepository interface {
-	CreateObject(context.Context, *model.Object) error
+	UpdateObject(context.Context, *model.Object) error
 	// GetObject(context.Context, string) (*model.Object, error)
 }
