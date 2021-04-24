@@ -46,7 +46,7 @@ func run() error {
 		return fmt.Errorf("pgdb.Dial failed: %w", err)
 	}
 
-	// Run Postgres migrations
+	// run Postgres migrations
 	if pgDB != nil {
 		log.Println("Running PostgreSQL migrations")
 		if err := runPgMigrations(); err != nil {
@@ -56,6 +56,13 @@ func run() error {
 
 	// object repository
 	objectRepo := objectrepo.New(pgDB)
+
+	// delete objects in the database when they have not been received for more than 30 seconds
+	go func() {
+		if err := objectRepo.CleanExpiredObjects(defaultCtx); err != nil {
+			log.Fatal(err)
+		}
+	}()
 
 	// callback service
 	callbackService := callbackservice.New(objectRepo)
@@ -82,7 +89,7 @@ func run() error {
 
 			objectID := request.ObjectIDs[i]
 
-			log.Printf("=> Next object ID: %d\n", objectID)
+			//log.Printf("=> Next object ID: %d\n", objectID)
 
 			go func() {
 				defer wg.Done()
@@ -94,7 +101,7 @@ func run() error {
 					return
 				}
 
-				log.Printf("[id: %d, total: %d] testerService.GetObject passed (online=%t)\n", object.ID, len(request.ObjectIDs), object.Online)
+				//log.Printf("[id: %d, total: %d] testerService.GetObject passed (online=%t)\n", object.ID, len(request.ObjectIDs), object.Online)
 
 				receivedObjects <- object
 
@@ -122,7 +129,7 @@ func run() error {
 			totalUpdated++
 		}
 
-		log.Printf("totals: received=%d, updated = %d\n", totalReceived, totalUpdated)
+		log.Printf("objects: received=%d, updated(=online) = %d\n", totalReceived, totalUpdated)
 
 		w.Write([]byte("ok"))
 	})

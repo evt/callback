@@ -23,7 +23,7 @@ type ObjectService struct {
 func New(timeout time.Duration) *ObjectService {
 	return &ObjectService{
 		timeout: timeout,
-		limiter: make(chan struct{}, 10), // max 10 parallel requests to tester service
+		limiter: make(chan struct{}, 200), // max 200 parallel requests to tester service
 	}
 }
 

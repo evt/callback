@@ -2,6 +2,9 @@ package objectrepo
 
 import (
 	"context"
+	"fmt"
+	"log"
+	"time"
 
 	"github.com/evt/callback/internal/model"
 
@@ -29,7 +32,34 @@ func (repo *ObjectRepository) UpdateObject(ctx context.Context, object *model.Ob
 		Set("last_seen = now()").
 		Insert()
 	if err != nil {
-		return err
+		return fmt.Errorf("SQL insert failed: %w", err)
+	}
+
+	return nil
+}
+
+// CleanExpiredObjects removes objects with last_seen > 30 sec every 30 sec
+func (repo *ObjectRepository) CleanExpiredObjects(ctx context.Context) error {
+	const (
+		ttl        = 30
+		tickPeriod = 30
+	)
+
+	for {
+		<-time.Tick(time.Second * tickPeriod)
+
+		result, err := repo.db.
+			WithContext(ctx).
+			Model((*model.Object)(nil)).
+			Where(fmt.Sprintf("last_seen < (now() - '%d seconds'::interval)", ttl)).
+			Delete()
+		if err != nil {
+			return fmt.Errorf("SQL delete failed: %w", err)
+		}
+
+		if result.RowsAffected() > 0 {
+			log.Printf("[CleanExpiredObjects] Deleted %d objects last seen over %d sec ago\n", result.RowsAffected(), ttl)
+		}
 	}
 
 	return nil
