@@ -58,4 +58,4 @@ Test your code.
 
 # Result
 
-<img src="./images/make-run.jpg">
+<img src="./images/make-run.png">
