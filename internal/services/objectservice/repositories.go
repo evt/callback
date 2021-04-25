@@ -1,3 +1,5 @@
+//go:generate mockgen -destination=./mocks.go -source=./repositories.go -package=objectservice
+
 package objectservice
 
 import (
