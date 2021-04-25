@@ -55,3 +55,7 @@ some comments in the code to explain the more complicated parts are appreciated
 it is a nice bonus if you provide some way to set up the things needed for us to
 
 Test your code.
+
+# Result
+
+<img src="./images/make-run.jpg">

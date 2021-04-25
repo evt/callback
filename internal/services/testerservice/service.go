@@ -1,11 +1,13 @@
 package testerservice
 
 import (
+	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net/http"
 	"time"
+
+	"github.com/evt/callback/internal/e"
 
 	"github.com/evt/callback/internal/model"
 )
@@ -22,20 +24,20 @@ type ObjectService struct {
 // New creates a new object service.
 func New(timeout time.Duration) *ObjectService {
 	return &ObjectService{
-		timeout: timeout,
+		timeout: timeout,                  // timeout for GET http://tester:9010/objects/<object ID>
 		limiter: make(chan struct{}, 200), // max 200 parallel requests to tester service
 	}
 }
 
 // GetObject fetches object from tester service
-func (svc *ObjectService) GetObject(objectID uint) (model.TesterObject, error) {
+func (svc *ObjectService) GetObject(ctx context.Context, objectID uint) (model.TesterObject, e.Error) {
 	if objectID == 0 {
-		return model.TesterObject{}, errors.New("no object ID provided")
+		return model.TesterObject{}, e.NewBadRequest("no object ID provided")
 	}
 
 	select {
 	case <-time.After(svc.timeout):
-		return model.TesterObject{}, fmt.Errorf("get object timeout (%.0f secs)", svc.timeout.Seconds())
+		return model.TesterObject{}, e.NewInternalf("get object timeout (%.0f secs)", svc.timeout.Seconds())
 	case svc.limiter <- struct{}{}:
 	}
 	defer func() {
@@ -46,13 +48,13 @@ func (svc *ObjectService) GetObject(objectID uint) (model.TesterObject, error) {
 
 	response, err := httpClient.Get(url)
 	if err != nil {
-		return model.TesterObject{}, fmt.Errorf("get object details failed: %w", err)
+		return model.TesterObject{}, e.NewInternalf("get object details failed: %s", err)
 	}
 	defer response.Body.Close()
 
 	var testerObject model.TesterObject
 	if err := json.NewDecoder(response.Body).Decode(&testerObject); err != nil {
-		return model.TesterObject{}, fmt.Errorf("failed decoding tester object: %w", err)
+		return model.TesterObject{}, e.NewInternalf("failed decoding tester object: %s", err)
 	}
 
 	return testerObject, nil

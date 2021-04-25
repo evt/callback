@@ -1,4 +1,4 @@
-package callbackservice
+package objectservice
 
 import (
 	"context"
@@ -8,6 +8,6 @@ import (
 
 // ObjectRepository is an object repository
 type ObjectRepository interface {
-	UpdateObject(context.Context, *model.Object) error
-	// GetObject(context.Context, string) (*model.Object, error)
+	UpdateObject(context.Context, *model.DBObject) error
+	// GetObject(context.Context, string) (*model.DBObject, error)
 }
