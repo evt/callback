@@ -16,6 +16,8 @@
 
 # Callback service
 
+## Task description
+
 Write a rest-service that listens on `localhost:9090` for POST requests on /callback.
 
 Run the go service attached to this task. It will send requests to your service at a fixed interval of 5 seconds.
@@ -56,6 +58,27 @@ it is a nice bonus if you provide some way to set up the things needed for us to
 
 Test your code.
 
-# Result
+## Issues found in task description and fixed
+
+- `POST /callback` request could send zero object IDs
+- `GET /objects/<id>` route didn't work (incorrect `strings.TrimPrefix)
+- `signal.Notify` tried to catch SIGKILL which was impossible
+- `http.Client` had a timeout = 1 second which was not enough to wait for `POST /callback` response
+
+## Solution notes
+
+- :trident: clean architecture (handler->service->repository)
+- :book: standard Go project layout (well, more or less :blush:)
+- :cd: github CI/CD + docker compose + Makefile included
+- :card_file_box: PostgreSQL migrations included
+- :white_check_mark: tests with mocks included
+- :boom: rate limiter for object details requests included
+
+## HOWTO
+
+- run with `make run`
+- test with `go test -v ./...` (github scrutinizer doesn't like `make test` for some reason)
+
+## A picture is worth a thousand words
 
 <img src="./images/make-run.png">
