@@ -25,7 +25,7 @@ func New(service ObjectService, testerService TesterService) *CallbackHandler {
 	}
 }
 
-// CallbackHandler handles POST /callback requests
+// Post handles POST /callback requests
 func (h *CallbackHandler) Post(w http.ResponseWriter, r *http.Request) {
 	// using default context as client waits for 5 seconds only which is not enough to complete
 	defaultCtx := context.Background()
