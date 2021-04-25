@@ -61,7 +61,7 @@ Test your code.
 ## Issues found in task description and fixed
 
 - `POST /callback` request could send zero object IDs
-- `GET /objects/<id>` route didn't work (incorrect `strings.TrimPrefix)
+- `GET /objects/<id>` route didn't work (incorrect `strings.TrimPrefix`)
 - `signal.Notify` tried to catch SIGKILL which was impossible
 - `http.Client` had a timeout = 1 second which was not enough to wait for `POST /callback` response
 
