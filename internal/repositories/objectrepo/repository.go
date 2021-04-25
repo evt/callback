@@ -24,7 +24,7 @@ func New(db *pg.DB) *ObjectRepository {
 }
 
 // UpdateObject creates new object in Dynamo DB.
-func (repo *ObjectRepository) UpdateObject(ctx context.Context, object *model.Object) error {
+func (repo *ObjectRepository) UpdateObject(ctx context.Context, object *model.DBObject) error {
 	_, err := repo.db.
 		WithContext(ctx).
 		Model(object).
@@ -45,12 +45,15 @@ func (repo *ObjectRepository) CleanExpiredObjects(ctx context.Context) error {
 		tickPeriod = 30
 	)
 
+	ticker := time.NewTicker(time.Second * tickPeriod)
+	defer ticker.Stop()
+
 	for {
-		<-time.Tick(time.Second * tickPeriod)
+		<-ticker.C
 
 		result, err := repo.db.
 			WithContext(ctx).
-			Model((*model.Object)(nil)).
+			Model((*model.DBObject)(nil)).
 			Where(fmt.Sprintf("last_seen < (now() - '%d seconds'::interval)", ttl)).
 			Delete()
 		if err != nil {

@@ -3,6 +3,7 @@ package pg
 import (
 	"errors"
 	"fmt"
+	"log"
 	"time"
 
 	"github.com/evt/callback/config"
@@ -31,9 +32,32 @@ func Dial() (*DB, error) {
 
 	pgDB := pg.Connect(pgOpts)
 
-	_, err = pgDB.Exec("SELECT 1")
-	if err != nil {
-		return nil, fmt.Errorf("pgDB.Exec failed: %w", err)
+	// run test select query to make sure PostgreSQL is up and running
+	var attempt uint
+
+	const maxAttempts = 10
+
+	for {
+		attempt++
+
+		log.Printf("[PostgreSQL.Dial] (Ping attempt %d) SELECT 1\n", attempt)
+
+		_, err = pgDB.Exec("SELECT 1")
+		if err != nil {
+			log.Printf("[PostgreSQL.Dial] (Ping attempt %d) error: %s\n", attempt, err)
+
+			if attempt < maxAttempts {
+				time.Sleep(1 * time.Second)
+
+				continue
+			}
+
+			return nil, fmt.Errorf("pgDB.Exec failed: %w", err)
+		}
+
+		log.Printf("[PostgreSQL.Dial] (Ping attempt %d) OK\n", attempt)
+
+		break
 	}
 
 	pgDB.WithTimeout(time.Second * time.Duration(Timeout))

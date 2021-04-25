@@ -1,4 +1,4 @@
-package callbackservice
+package objectservice
 
 import (
 	"context"
@@ -9,20 +9,20 @@ import (
 	"github.com/evt/callback/internal/model"
 )
 
-// CallbackService is a callback service.
-type CallbackService struct {
+// ObjectService is a callback service.
+type ObjectService struct {
 	objectRepo ObjectRepository
 }
 
 // New creates a new callback service.
-func New(repo ObjectRepository) *CallbackService {
-	return &CallbackService{
+func New(repo ObjectRepository) *ObjectService {
+	return &ObjectService{
 		objectRepo: repo,
 	}
 }
 
 // UpdateObject creates new object
-func (svc *CallbackService) UpdateObject(ctx context.Context, object *model.Object) e.Error {
+func (svc *ObjectService) UpdateObject(ctx context.Context, object *model.DBObject) e.Error {
 	if object == nil {
 		return e.NewInternal("no object provided")
 	}
