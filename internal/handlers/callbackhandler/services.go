@@ -1,3 +1,5 @@
+//go:generate mockgen -destination=./mocks.go -source=./services.go -package=callbackhandller
+
 package callbackhandler
 
 import (

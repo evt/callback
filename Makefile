@@ -11,3 +11,6 @@ lint:
 	gofumpt -w -s ./..
 	golangci-lint run --fix
 
+generate:
+	mockgen -destination=./internal/services/objectservice/mocks.go -source=./internal/services/objectservice/repositories.go -package=objectservice
+	mockgen -destination=./internal/handlers/callbackhandler/mocks.go -source=./internal/handlers/callbackhandler/services.go -package=callbackhandler
