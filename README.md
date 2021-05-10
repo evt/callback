@@ -14,8 +14,9 @@
 
 [![license](https://img.shields.io/badge/license-MIT-008000)](https://en.wikipedia.org/wiki/MIT_License)
 [![GitHub contributors](https://img.shields.io/github/contributors/evt/callback)](https://github.com/evt/callback/graphs/contributors)
-[![Simply the best ;)](https://img.shields.io/badge/simply-the%20best%20%3B%29-orange)](https://github.com/evt)
 
+[![Simply the best ;)](https://img.shields.io/badge/simply-the%20best%20%3B%29-orange)](https://github.com/evt)
+[![Youtube channel views)](https://img.shields.io/youtube/channel/views/UCiAcG4aoU64TyV6zCjrgYkw?style=social)](https://www.youtube.com/channel/UCiAcG4aoU64TyV6zCjrgYkw/about)
 
 
 
