@@ -1,4 +1,4 @@
-[![Github CI/CD](https://img.shields.io/github/workflow/status/evt/callback/Go?logo=github%20actions)](https://raw.githubusercontent.com/evt/callback/main/images/make-run.png)
+[![Github CI/CD](https://img.shields.io/github/workflow/status/evt/callback/Go?logo=github%20actions&logoColor=ffffff)](https://raw.githubusercontent.com/evt/callback/main/images/make-run.png)
 ![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/evt/callback/main?logo=Scrutinizer)
 ![Codacy Grade](https://img.shields.io/codacy/grade/c9467ed47e064b1981e53862d0286d65?logo=Codacy)
 [![GoReportCard](https://goreportcard.com/badge/github.com/evt/callback?label=top%20lang&logo=go)](https://goreportcard.com/report/github.com/evt/callback)
