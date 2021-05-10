@@ -7,16 +7,13 @@
 
 
 [![Github Repository Size](https://img.shields.io/github/repo-size/evt/callback?logo=github)](https://github.com/evt/callback/find/main)
-[![GitHub last commit](https://img.shields.io/github/last-commit/evt/callback?logo=github)](https://github.com/evt/callback/commit)
+![Lines of code](https://img.shields.io/tokei/lines/github.com/evt/callback)
 [![Github forks](https://img.shields.io/github/forks/evt/callback?logo=github)](https://github.com/evt/callback/network/members)
+[![GitHub last commit](https://img.shields.io/github/last-commit/evt/callback?logo=github)](https://github.com/evt/callback/commit)
 [![GitHub open issues](https://img.shields.io/github/issues/evt/callback?logo=github)](https://github.com/evt/callback/issues)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/evt/callback?logo=github)](https://github.com/evt/callback/issues)
 
-
-![Lines of code](https://img.shields.io/tokei/lines/github.com/evt/callback)
-![License](https://img.shields.io/badge/license-MIT-008000)
-[![license](https://img.shields.io/badge/license-MIT-green)](https://en.wikipedia.org/wiki/MIT_License)
-
+[![license](https://img.shields.io/badge/license-MIT-008000)](https://en.wikipedia.org/wiki/MIT_License)
 ![GitHub contributors](https://img.shields.io/github/contributors/evt/callback)
 ![Simply the best ;)](https://img.shields.io/badge/simply-the%20best%20%3B%29-orange)
 
