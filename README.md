@@ -4,7 +4,7 @@ https://raw.githubusercontent.com/evt/callback/main/images/make-run.png)
 
 
 ![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/evt/callback/main?logo=Scrutinizer)
-![Codacy Grade](https://img.shields.io/codacy/grade/c9467ed47e064b1981e53862d0286d65label=mod&logo=Codacy)
+![Codacy Grade](https://img.shields.io/codacy/grade/c9467ed47e064b1981e53862d0286d65?label=mod&logo=Codacy)
 
 [![GoReportCard](https://goreportcard.com/badge/github.com/evt/callback?label=report&logo=go)](https://goreportcard.com/report/github.com/evt/callback)
 ![Repository Top Language](https://img.shields.io/github/languages/top/evt/callback?label=top%20lang&logo=go)
