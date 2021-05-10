@@ -7,7 +7,7 @@
 
 
 [![Github Repository Size](https://img.shields.io/github/repo-size/evt/callback?logo=github)](https://github.com/evt/callback/find/main)
-![Lines of code](https://img.shields.io/tokei/lines/github.com/evt/callback)
+[![Lines of code](https://img.shields.io/tokei/lines/github.com/evt/callback?logo=github)](https://github.com/gravitymir/callback/find/main)
 [![Github forks](https://img.shields.io/github/forks/evt/callback?logo=github)](https://github.com/evt/callback/network/members)
 [![GitHub last commit](https://img.shields.io/github/last-commit/evt/callback?logo=github)](https://github.com/evt/callback/commit)
 [![GitHub open issues](https://img.shields.io/github/issues/evt/callback?logo=github)](https://github.com/evt/callback/issues)
