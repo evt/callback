@@ -14,7 +14,7 @@
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/evt/callback?logo=github)](https://github.com/evt/callback/issues)
 
 [![license](https://img.shields.io/badge/license-MIT-008000)](https://en.wikipedia.org/wiki/MIT_License)
-![GitHub contributors](https://img.shields.io/github/contributors/evt/callback)
+[![GitHub contributors](https://img.shields.io/github/contributors/evt/callback)](https://github.com/evt/callback/graphs/contributors)
 ![Simply the best ;)](https://img.shields.io/badge/simply-the%20best%20%3B%29-orange)
 
 
