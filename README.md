@@ -14,6 +14,7 @@
 
 
 ![Lines of code](https://img.shields.io/tokei/lines/github.com/evt/callback)
+![License](https://img.shields.io/badge/license-MIT-008000)
 [![license](https://img.shields.io/badge/license-MIT-green)](https://en.wikipedia.org/wiki/MIT_License)
 
 ![GitHub contributors](https://img.shields.io/github/contributors/evt/callback)
