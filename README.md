@@ -11,8 +11,8 @@
 [![GitHub open issues](https://img.shields.io/github/issues/evt/callback?logo=github)](https://github.com/evt/callback/issues)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/evt/callback?logo=github)](https://github.com/evt/callback/issues)\
 [![license](https://img.shields.io/badge/license-MIT-008000)](https://en.wikipedia.org/wiki/MIT_License)
-[![GitHub contributors](https://img.shields.io/github/contributors/evt/callback)](https://github.com/evt/callback/graphs/contributors)\
-[![Simply the best ;)](https://img.shields.io/badge/simply-the%20best%20%3B%29-orange)](https://github.com/evt)
+[![GitHub contributors](https://img.shields.io/github/contributors/evt/callback)](https://github.com/evt/callback/graphs/contributors)
+[![Simply the best ;)](https://img.shields.io/badge/simply-the%20best%20%3B%29-orange)](https://github.com/evt)\
 [![Youtube channel views)](https://img.shields.io/youtube/channel/views/UCiAcG4aoU64TyV6zCjrgYkw?style=social)](https://www.youtube.com/channel/UCiAcG4aoU64TyV6zCjrgYkw/about)
 [![Youtube subscribers)](https://img.shields.io/youtube/channel/subscribers/UCiAcG4aoU64TyV6zCjrgYkw?style=social&label=Subscribe)](https://www.youtube.com/channel/UCiAcG4aoU64TyV6zCjrgYkw?sub_confirmation=1)\
 <img align="right" width="50%" src="./images/big-gopher.jpg">
