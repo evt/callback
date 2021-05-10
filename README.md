@@ -17,7 +17,7 @@
 
 [![Simply the best ;)](https://img.shields.io/badge/simply-the%20best%20%3B%29-orange)](https://github.com/evt)
 [![Youtube channel views)](https://img.shields.io/youtube/channel/views/UCiAcG4aoU64TyV6zCjrgYkw?style=social)](https://www.youtube.com/channel/UCiAcG4aoU64TyV6zCjrgYkw/about)
-
+[![Youtube channel views)](https://img.shields.io/youtube/channel/subscribers/UCiAcG4aoU64TyV6zCjrgYkw?style=social)](https://www.youtube.com/channel/UCiAcG4aoU64TyV6zCjrgYkw/videos)
 
 
 <img align="right" width="50%" src="./images/big-gopher.jpg">
