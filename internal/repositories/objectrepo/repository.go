@@ -64,6 +64,4 @@ func (repo *ObjectRepository) CleanExpiredObjects(ctx context.Context) error {
 			log.Printf("[CleanExpiredObjects] Deleted %d objects last seen over %d sec ago\n", result.RowsAffected(), ttl)
 		}
 	}
-
-	return nil
 }
