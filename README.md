@@ -1,17 +1,20 @@
-![Github CI/CD](https://img.shields.io/github/workflow/status/evt/callback/Go)
-![Go Report](https://goreportcard.com/badge/github.com/evt/callback)
-![Repository Top Language](https://img.shields.io/github/languages/top/evt/callback)
-![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/evt/callback/main)
-![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/evt/callback)
-![Codacy Grade](https://img.shields.io/codacy/grade/c9467ed47e064b1981e53862d0286d65)
-![Github Repository Size](https://img.shields.io/github/repo-size/evt/callback)
-![Github Open Issues](https://img.shields.io/github/issues/evt/callback)
-![Lines of code](https://img.shields.io/tokei/lines/github/evt/callback)
-![License](https://img.shields.io/badge/license-MIT-green)
-![GitHub last commit](https://img.shields.io/github/last-commit/evt/callback)
-![GitHub contributors](https://img.shields.io/github/contributors/evt/callback)
-![Simply the best ;)](https://img.shields.io/badge/simply-the%20best%20%3B%29-orange)
-
+[![Github CI/CD](https://img.shields.io/github/workflow/status/evt/callback/Go?logo=github%20actions&logoColor=ffffff)](https://raw.githubusercontent.com/evt/callback/main/images/make-run.png)
+![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/quality/g/evt/callback/main?logo=Scrutinizer)
+![Codacy Grade](https://img.shields.io/codacy/grade/c9467ed47e064b1981e53862d0286d65?logo=Codacy)
+[![GoReportCard](https://goreportcard.com/badge/github.com/evt/callback?label=top%20lang&logo=go)](https://goreportcard.com/report/github.com/evt/callback)
+[![Golang go.mod Go version](https://img.shields.io/github/go-mod/go-version/evt/callback?label=mod&logo=go)](https://golang.org/doc/go1.16)
+![Repository Top Language](https://img.shields.io/github/languages/top/evt/callback?label=top%20lang&logo=go)\
+[![Github Repository Size](https://img.shields.io/github/repo-size/evt/callback?logo=github)](https://github.com/evt/callback/find/main)
+[![Lines of code](https://img.shields.io/tokei/lines/github.com/evt/callback?logo=github)](https://github.com/gravitymir/callback/find/main)
+[![Github forks](https://img.shields.io/github/forks/evt/callback?logo=github)](https://github.com/evt/callback/network/members)
+[![GitHub last commit](https://img.shields.io/github/last-commit/evt/callback?logo=github)](https://github.com/evt/callback/commit)
+[![GitHub open issues](https://img.shields.io/github/issues/evt/callback?logo=github)](https://github.com/evt/callback/issues)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/evt/callback?logo=github)](https://github.com/evt/callback/issues)\
+[![license](https://img.shields.io/badge/license-MIT-008000)](https://en.wikipedia.org/wiki/MIT_License)
+[![GitHub contributors](https://img.shields.io/github/contributors/evt/callback)](https://github.com/evt/callback/graphs/contributors)
+[![Simply the best ;)](https://img.shields.io/badge/simply-the%20best%20%3B%29-orange)](https://github.com/evt)\
+[![Youtube channel views)](https://img.shields.io/youtube/channel/views/UCiAcG4aoU64TyV6zCjrgYkw?style=social)](https://www.youtube.com/channel/UCiAcG4aoU64TyV6zCjrgYkw/videos)
+[![Youtube subscribers)](https://img.shields.io/youtube/channel/subscribers/UCiAcG4aoU64TyV6zCjrgYkw?style=social&label=Subscribe)](https://www.youtube.com/channel/UCiAcG4aoU64TyV6zCjrgYkw?sub_confirmation=1)\
 <img align="right" width="50%" src="./images/big-gopher.jpg">
 
 # Callback service
